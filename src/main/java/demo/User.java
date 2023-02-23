@@ -88,4 +88,11 @@ public class User {
     public String toString(){
         return name+" is "+age+" years old and has as email "+email;
     }
+
+    public boolean hasMembershipYear(int year){
+        for(Integer year2:membershipYears){
+            if(year==year2)return true;
+        }
+        return false;
+    }
 }
