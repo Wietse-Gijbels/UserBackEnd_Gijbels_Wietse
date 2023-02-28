@@ -11,6 +11,17 @@ public class UserService {
     private List<User> userRepository = new ArrayList<>();
 
     public UserService() {
+        User elke = new User("Elke", 44,"jajaja@","nenene");
+
+		User miyo = new User("Miyo", 14,"jajaj@","nenene");
+
+		User yuki = new User("Yuki", 12,"jaja@","nenene");
+		
+		User eric = new User("Eric", 65,"jaj@","nenene");
+		addUser(elke);
+		addUser(miyo);
+		addUser(yuki);
+	    addUser(eric);
     }
 
     public List<User> getAllUsers() {
@@ -19,6 +30,10 @@ public class UserService {
 
     public List<User> getUsersWithAgeOlderThan(int age) {
         return userRepository.stream().filter(user -> user.getAge()>age).toList();
+        // for(User user:userRepository){
+        //     if(user.getAge()<age)userRepository.remove(user);
+        // }
+        // return userRepository;
     }
 
     public User getOldestUser() {
@@ -62,10 +77,27 @@ public class UserService {
     }
 
     public List<User> getUsersWithMembershipYear(int year){
-        List<User> result=null;
+        List<User> result=new ArrayList<>();
         for(User user:userRepository){
             if(user.hasMembershipYear(year))result.add(user);
         }
         return result;
+    }
+
+    public List<User> getAdultUsers(){
+        return userRepository.stream().filter(user -> user.getAge()>17).toList();
+    }
+
+    public User searchUserWithEmailAndAge(String email,int age){
+        for(User user:userRepository){
+            if(user.getEmail().equals(email)&&user.getAge()==age){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public List<User> searchUsersInAgeRange(int min, int max){
+        return userRepository.stream().filter(user -> user.getAge()>=min).filter(user -> user.getAge()<=max).toList();
     }
 }

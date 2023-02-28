@@ -3,8 +3,6 @@ package demo;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.h2.result.ResultColumn;
-
 public class User {
 
     private String name;
